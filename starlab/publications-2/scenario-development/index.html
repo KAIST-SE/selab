@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta http-equiv="https://se.kaist.ac.kr/starlab/wp-content/themes/lawyeria-lite/content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<title>Scenario Development | SESoS/KAIST</title>
+
+		<!--[if lt IE 9]>
+		<script src="https://se.kaist.ac.kr/starlab/wp-content/themes/lawyeria-lite/js/html5.js"></script>
+		<link rel="stylesheet" href="https://se.kaist.ac.kr/starlab/wp-content/themes/lawyeria-lite/css/ie.css" type="text/css">
+		<![endif]-->	
+
+		<style>#wpadminbar #wp-admin-bar-wsm_free_top_button .ab-icon:before {
+	content: "\f239";
+	color: #FF9800;
+	top: 3px;
+}</style>
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="SESoS/KAIST &raquo; 피드" href="/starlab/feed/">
+<link rel="alternate" type="application/rss+xml" title="SESoS/KAIST &raquo; 댓글 피드" href="/starlab/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"\/starlab\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.7.8"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/starlab/wp-includes/css/dist/block-library/style.min.css?ver=5.7.8" type="text/css" media="all">
+<link rel="stylesheet" id="wsm-style-css" href="/starlab/wp-content/plugins/wp-stats-manager/css/style.css?ver=1.2" type="text/css" media="all">
+<link rel="stylesheet" id="lawyeria_lite_style-css" href="/starlab/wp-content/themes/lawyeria-lite/style.css?ver=1.0" type="text/css" media="all">
+<link rel="stylesheet" id="lawyeria_lite_fancybox-css" href="/starlab/wp-content/themes/lawyeria-lite/css/jquery.fancybox.css?ver=1.0" type="text/css" media="all">
+<link rel="stylesheet" id="lawyeria_lite_font-css" href="//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C400italic%2C700italic%7CRoboto+Slab%3A300%2C100%2C400%2C700&#038;subset=latin%2Clatin-ext" type="text/css" media="all">
+<script type="text/javascript" src="/starlab/wp-includes/js/jquery/jquery.min.js?ver=3.5.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="/starlab/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/starlab/wp-json/">
+<link rel="alternate" type="application/json" href="/starlab/wp-json/wp/v2/pages/342">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/starlab/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/starlab/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.7.8">
+<link rel="canonical" href="/starlab/publications-2/scenario-development/">
+<link rel="shortlink" href="/starlab/?p=342">
+<link rel="alternate" type="application/json+oembed" href="/starlab/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fstarlab%2Fpublications-2%2Fscenario-development%2F">
+<link rel="alternate" type="text/xml+oembed" href="/starlab/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fstarlab%2Fpublications-2%2Fscenario-development%2F#038;format=xml">
+	   
+    <!-- Wordpress Stats Manager -->
+    <script type="text/javascript">var _wsm = _wsm || [];
+           _wsm.push(['trackPageView']);
+           _wsm.push(['enableLinkTracking']);
+           _wsm.push(['enableHeartBeatTimer']);
+          (function() {
+            var u="/starlab/wp-content/plugins/wp-stats-manager/";
+            _wsm.push(['setUrlReferrer', "/starlab/publications-2/scenario-development/?simply_static_page=1866"]);
+            _wsm.push(['setTrackerUrl',"/starlab/?wmcAction=wmcTrack"]);
+            _wsm.push(['setSiteId', "1"]);
+            _wsm.push(['setPageId', "342"]);
+            _wsm.push(['setWpUserId', "0"]);           
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/wsm_new.js'; s.parentNode.insertBefore(g,s);
+          })();</script>
+    <!-- End Wordpress Stats Manager Code -->
+      <link rel="icon" href="/starlab/wp-content/uploads/2018/11/sesos-100x100.png" sizes="32x32">
+<link rel="icon" href="/starlab/wp-content/uploads/2018/11/sesos-200x200.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/starlab/wp-content/uploads/2018/11/sesos-200x200.png">
+<meta name="msapplication-TileImage" content="/starlab/wp-content/uploads/2018/11/sesos-300x300.png">
+	</head>
+	<body class="page-template-default page page-id-342 page-child parent-pageid-334">
+		<header>
+			<div class="wide-header">
+				<div class="wrapper cf">
+					<div class="header-left cf">
+						
+                            <a class="logo" href="/starlab" title="SESoS/KAIST"><img src="/starlab/wp-content/uploads/2018/11/title2.png" alt="SESoS/KAIST" title="SESoS/KAIST"></a>					</div>
+<!--/div .header-left .cf-->
+					<div class="header-contact">
+    					    					<br>
+    					<span>
+    						    					</span><!--/span-->
+					</div>
+<!--/.header-contact-->
+				</div>
+<!--/div .wrapper-->
+			</div>
+<!--/div .wide-header-->
+			<div class="wrapper cf">
+			    <nav>
+    				<div class="openresponsivemenu">
+    					Open Menu    				</div>
+<!--/div .openresponsivemenu-->
+    				<div class="container-menu cf">
+        				<div class="menu-menu-container"><ul id="menu-menu" class="menu">
+<li id="menu-item-859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-859"><a href="/starlab/about-us/">About</a></li>
+<li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="/starlab/research-lab/">Research Lab</a></li>
+<li id="menu-item-814" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-814">
+<a href="/starlab/studies/">Studies</a>
+<ul class="sub-menu">
+	<li id="menu-item-832" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-832"><a href="/starlab/">Overview of SESoS Research</a></li>
+	<li id="menu-item-823" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-823">
+<a href="/starlab/studies/study-1-sos-and-environment-modeling/">[Study 1] SoS and Environment Modeling</a>
+	<ul class="sub-menu">
+		<li id="menu-item-826" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-826"><a href="/starlab/studies/study-1-sos-and-environment-modeling/1-meta-model-for-system-of-systems-m2sos/">1) SoS Meta-Models for Simulaton &#038; Verification: M2SoS (v2) and Model Types</a></li>
+		<li id="menu-item-827" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-827"><a href="/starlab/studies/study-1-sos-and-environment-modeling/2-environment-modeling-of-sos/">2) Environment Modeling of SoS</a></li>
+		<li id="menu-item-828" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-828"><a href="/starlab/studies/study-1-sos-and-environment-modeling/3-policy-specification-for-sos/">3) Policy Specification for SoS</a></li>
+		<li id="menu-item-829" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-829"><a href="/starlab/studies/study-1-sos-and-environment-modeling/4-sos-modeling-language/">4) SoS Modeling Language</a></li>
+		<li id="menu-item-900" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-900"><a href="/starlab/5-high-level-architecture/">5) High-level Architecture</a></li>
+	</ul>
+</li>
+	<li id="menu-item-824" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-824">
+<a href="/starlab/studies/study-2-statistical-verification-of-sos/">[Study 2] Statistical Verification of SoS</a>
+	<ul class="sub-menu">
+		<li id="menu-item-833" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-833"><a href="/starlab/studies/study-2-statistical-verification-of-sos/statistical-model-checking/">1) Statistical Model Checking</a></li>
+		<li id="menu-item-834" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-834"><a href="/starlab/studies/study-2-statistical-verification-of-sos/agent-based-simulation/">2) Agent-based Simulation</a></li>
+		<li id="menu-item-835" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-835"><a href="/starlab/studies/study-2-statistical-verification-of-sos/abc-and-abc-modeling/">3) ABC and ABC+ Modeling</a></li>
+		<li id="menu-item-929" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-929"><a href="/starlab/studies/study-2-statistical-verification-of-sos/interactive-simulation/">4) Interactive Simulation</a></li>
+		<li id="menu-item-932" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-932"><a href="/starlab/studies/study-2-statistical-verification-of-sos/runtime-monitoring-verification-technique/">5) Runtime Monitoring &#038; Verification Technique</a></li>
+	</ul>
+</li>
+	<li id="menu-item-825" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-825">
+<a href="/starlab/studies/study-3-property-based-model-slicing-for-sos-verification/">[Study 3] Property-based Model Slicing for Efficient SoS Verification</a>
+	<ul class="sub-menu">
+		<li id="menu-item-837" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-837"><a href="/starlab/sos-goal-model-slicing/">1) SoS Goal Model Slicing</a></li>
+		<li id="menu-item-836" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-836"><a href="/starlab/sos-simulation-model-slicing/">2) SoS Simulation Model Slicing</a></li>
+		<li id="menu-item-838" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-838"><a href="/starlab/hybird-sos-model-slicing/">3) Hybird SoS Model Slicing</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-815" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-815">
+<a href="/starlab/publications-2/">Documents</a>
+<ul class="sub-menu">
+	<li id="menu-item-820" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-820"><a href="/starlab/publications-2/conference-and-journal-papers/">Publications</a></li>
+	<li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-840"><a href="/starlab/technical-paper/">Technical Paper</a></li>
+	<li id="menu-item-821" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-342 current_page_item menu-item-821"><a href="/starlab/publications-2/scenario-development/" aria-current="page">Scenario Development</a></li>
+	<li id="menu-item-819" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-819"><a href="/starlab/publications-2/dictionary/">Dictionary</a></li>
+</ul>
+</li>
+<li id="menu-item-816" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-816">
+<a href="/starlab/tools-and-artifacts/">Tools and Artifacts</a>
+<ul class="sub-menu">
+	<li id="menu-item-891" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-891"><a href="/starlab/simva-sos-modeler/">SIMVA-SoS Modeler</a></li>
+	<li id="menu-item-843" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-843">
+<a href="/starlab/research/dictionary/">Research prototyping</a>
+	<ul class="sub-menu">
+		<li id="menu-item-846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-846"><a href="/starlab/research/dictionary/prism/">Research prototyping with PRISM</a></li>
+		<li id="menu-item-847" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-847"><a href="/starlab/research/dictionary/devs/">Research prototyping with DEVS</a></li>
+		<li id="menu-item-845" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-845"><a href="/starlab/research/dictionary/uppaal/">Research prototyping with UPPAAL</a></li>
+	</ul>
+</li>
+	<li id="menu-item-830" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-830">
+<a href="/starlab/tools-and-artifacts/opensource-tools/">Opensource Tools</a>
+	<ul class="sub-menu">
+		<li id="menu-item-851" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851"><a href="/starlab/tools-and-artifacts/opensource-tools/simva-sos/">SIMVA-SoS</a></li>
+		<li id="menu-item-848" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-848"><a href="/starlab/tools-and-artifacts/opensource-tools/sos-modeling-tool-for-simulation/">SoS Modeling Tool for Simulation</a></li>
+		<li id="menu-item-849" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-849"><a href="/starlab/tools-and-artifacts/opensource-tools/sos-goal-model-slicer/">SoS Goal Model Slicer</a></li>
+		<li id="menu-item-850" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-850"><a href="/starlab/tools-and-artifacts/opensource-tools/sos-simulation-model-slicer/">SoS Simulation Model Slicer</a></li>
+		<li id="menu-item-831" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-831"><a href="/starlab/dynamic-simva-sos/">Dynamic SIMVA-SoS</a></li>
+	</ul>
+</li>
+	<li id="menu-item-844" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-844"><a href="/starlab/tools-and-artifacts/software-artifacts/">Software Artifacts</a></li>
+</ul>
+</li>
+<li id="menu-item-862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-862">
+<a href="/starlab/tutorials/">Tutorials</a>
+<ul class="sub-menu">
+	<li id="menu-item-863" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-863"><a href="/starlab/tutorials/sysml-tutorial/">SysML</a></li>
+	<li id="menu-item-864" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-864"><a href="/starlab/tutorials/uml-marte-tutorial/">UML MARTE</a></li>
+	<li id="menu-item-865" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-865"><a href="/starlab/tutorials/cml-tutorial/">CML</a></li>
+	<li id="menu-item-866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-866"><a href="/starlab/tutorials/devs-and-system-dynamics/">DEVS and System Dynamics</a></li>
+	<li id="menu-item-867" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-867"><a href="/starlab/tutorials/250-2/">ADOxx</a></li>
+</ul>
+</li>
+<li id="menu-item-861" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-861"><a href="/starlab/seminars/">Seminars</a></li>
+</ul></div>    				</div>
+<!--/div .container-menu .cf-->
+    			</nav><!--/nav .navigation-->
+		    </div>
+			<div class="wrapper">
+						</div>	
+  			<section class="wide-nav">
+				<div class="wrapper">
+					<h3>
+						Scenario Development					</h3>
+<!--/h3-->
+				</div>
+<!--/div .wrapper-->
+			</section><!--/section .wide-nav-->
+		</header><!--/header-->
+		<section id="content">
+			<div class="wrapper cf">
+				<div id="posts">
+										<div class="post">
+						
+						<div class="post-excerpt">
+							<h2></h2>
+<h4><strong>[Scenario 1] Incident Response SoS Scenario</strong></h4>
+<h5><strong>1. Summary of Scenario</strong></h5>
+<p><strong>(1) SoS Definition</strong></p>
+<ul>
+<li>
+<strong>Mass Casualty Incident (MCI):</strong> NHS England defines a Mass Casualty incident for the health services as an incident (or series of incidents) causing casualties on a scale that is beyond the normal resources of the emergency and healthcare services’ ability to manage. A Mass Casualty incident may involve hundreds or thousands of casualties with a range of injuries, the response to which will be beyond the capacity of normal major incident procedures to cope and require further measures to appropriately deal with the casualty numbers. Casualties are likely to be a mixture of categories with 25% requiring immediate lifesaving intervention, 25% requiring intervention that can be delayed and 50% being walking wounded or minor injuries.
+<ul>
+<li>&lt;<a href="https://en.wikipedia.org/wiki/Mass-casualty_incident">Mass Casualty Incident &#8211; Wikipedia</a>&gt;</li>
+<li>&lt;<a href="https://delvalle.bphc.org/mod/wiki/view.php?pageid=89">What is a mass casualty incident?</a>&gt;</li>
+</ul>
+</li>
+</ul>
+<div id="attachment_567" style="width: 579px" class="wp-caption alignnone">
+<a href="/starlab/wp-content/uploads/2018/11/resources_transparent.png"><img aria-describedby="caption-attachment-567" loading="lazy" class="size-full wp-image-567" src="/starlab/wp-content/uploads/2018/11/resources_transparent.png" alt="" width="569" height="464" srcset="/starlab/wp-content/uploads/2018/11/resources_transparent.png 569w, /starlab/wp-content/uploads/2018/11/resources_transparent-300x245.png 300w" sizes="(max-width: 569px) 100vw, 569px"></a><p id="caption-attachment-567" class="wp-caption-text">image from DelValle Institute Learning Center (https://delvalle.bphc.org/mod/wiki/view.php?pageid=89)</p>
+</div>
+<p>&nbsp;</p>
+<p><strong>(2) Real-world Example: SoS for Grenfell Tower Fire Incident</strong></p>
+<ul>
+<li>A fire incident that covers large area, and cause an overwhelming number and severity of casualties is considered as mass casualty incident (MCI). London Grenfell tower fire incident, can be a good illustrative example. The following are basic facts reported after the fire incident occurred.
+<div id="attachment_568" style="width: 644px" class="wp-caption alignnone">
+<a href="/starlab/wp-content/uploads/2018/11/17138F8100000514-0-image-a-4_1498730825484.jpg"><img aria-describedby="caption-attachment-568" loading="lazy" class="wp-image-568 size-full" src="/starlab/wp-content/uploads/2018/11/17138F8100000514-0-image-a-4_1498730825484.jpg" alt="" width="634" height="422" srcset="/starlab/wp-content/uploads/2018/11/17138F8100000514-0-image-a-4_1498730825484.jpg 634w, /starlab/wp-content/uploads/2018/11/17138F8100000514-0-image-a-4_1498730825484-300x200.jpg 300w" sizes="(max-width: 634px) 100vw, 634px"></a><p id="caption-attachment-568" class="wp-caption-text">image from socialworkhelper (https://www.socialworkhelper.com/2017/09/12/grenfell-tower-three-months/)</p>
+</div>
+<ul>
+<li>Entity 1: Grenfell tower
+<ul>
+<li>It is a 24-storey Brutalist concrete tower block, designed in 1967 and completed in 1974</li>
+<li>It measures 67.3 m (220 ft) high and contained 120 flats</li>
+<li>A block of social housing flats in North Kensington, London occupied by between 400 and 600 people</li>
+</ul>
+</li>
+<li>Entity 2: Fire incident
+<ul>
+<li>Occurred on 14 June 2017</li>
+<li>(It is believed that) fire started accidentally in a fridge-freezer on the fourth floor</li>
+<li>Caused an estimated 80 deaths and over 70 injuries</li>
+<li>A total of 151 homes were destroyed in the tower and surrounding area</li>
+</ul>
+</li>
+<li>Entity 3: Emergency services
+<ul>
+<li>Received the first report of the fire at 00:54 local time (just midnight)</li>
+<li>First crews arrived six time units after the alarm</li>
+<li>In less than 25 time units, almost all floors were caught by fire</li>
+<li>It burned for about 60 hours until finally extinguished (two and a half day)</li>
+<li>More than 250 firefighters and 70 fire engines from stations all over London were involved in efforts to control the fire</li>
+<li>Over 100 London Ambulance Service crew on at least 20 ambulances attended</li>
+<li>Seventy-four people were confirmed by the NHS to be in six hospitals across London</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>(3) Why is Grenfell Tower Incident Response System an SoS?</strong></p>
+<table>
+<tbody>
+<tr>
+<td width="183"><strong>Dimension</strong></td>
+<td width="506"><strong>Observations in the scenario</strong></td>
+</tr>
+<tr>
+<td width="183">Autonomy of Constituents</td>
+<td width="506">Constituent systems in SIMVA-SoS can have range of actions. These actions need not be known at the SoS level, except the actions that are used to perform a role in SIMVA-SoS. For example, a FF could have range of actions including promoting fire safety via talks, advice and training sessions, using firefighting and rescue equipment, inspecting and enforcing safety standards, demonstrating the use of firefighting equipment, performing practice drills, working with police and ambulance service personnel, undertaking physical and academic training, and checking and maintaining vehicles, equipment, hydrants and water supplies. SIMVA-SoS considers only those actions which are used to fulfill the common goal, i.e. the SoS level goal, and only those the constituent systems publically use to perform their role.</td>
+</tr>
+<tr>
+<td width="183">Independence</td>
+<td width="506">Constituent systems in SIMVA-SoS perform their action to fulfill specific role identified/decomposed from the SoS level goal. In doing so, regardless of how they do it, the only requirement is communicating state of their action to related constituent systems. For example, how a FF perform the search or rescuing operation is encapsulated in its action. Independently they perform their action, and only communicate action status to the respective constituent systems.</td>
+</tr>
+<tr>
+<td width="183">Distribution</td>
+<td width="506">Constituent systems in SIMVA-SoS exchange only information using the infrastructure provided by SIMVA-SoS. For example, in the MCI scenario under consideration, a FF communicate the status of its action to other constituent systems simply putting the information on the shared communication infrastructure. Thus, SIMVA-SoS provide <em>distribution </em>by enabling constituent systems communicate concurrently on logical time. Each constituent systems have a shared logical time tick to perform their atomic action at once.</td>
+</tr>
+<tr>
+<td width="183">Evolution</td>
+<td width="506">The SIMVA-SoS simulation engine always keep track of constituent systems activity logs at each tick, and this enables to create consistent evolution steps and preservation of specified properties. In the MCI scenario under consideration, at each tick SoS state update, for example map update, is communicated to all constituent systems. The logs and update information helps to maintain and monitor evolution steps preserved.</td>
+</tr>
+<tr>
+<td width="183">Dynamic Behavior</td>
+<td width="506">SoS structure and composition changes dynamically as constituent systems make autonomous decisions. SIMVA-SoS provide a mechanism to manage the changes and direct them to the intended SoS level goal. In the MCI scenario under consideration, if a FF quiets its participation, the simulation engine can easily recognize it by counting missed self-status notification. The simulation engine, thus, free SoS level resources which were assigned to that specific constituent system (this can include restructuring and rescheduling the remaining constituent systems, or admitting if there are constituent systems that can play the role).</td>
+</tr>
+<tr>
+<td width="183">Emergence of Behavior</td>
+<td width="506">SIMVA-SoS identifies emergent behavior based on SoS level goal progresses. In the MCI scenario under consideration, certain FF performing <em>search</em> actions, and some Ambulance performing <em>transferring</em> action contribute to the progress of SoS level goal only when the actions are synergized.  The simulation engine compute and determines the cumulative contribution of each constituent systems actions to the progress of SoS level goal by analyzing log data.</td>
+</tr>
+<tr>
+<td width="183">Interdependence</td>
+<td width="506">By analyzing log data, SIMVA-SoS provide explicit identification of interdependence, the tracing of mutual dependencies, and the ability to use these links to assess the impact of constituent system changes. When a FFs moves patients to safe zone, activity details are added to the log database. Similarly, when Ambulances transfer patients to Hospitals from the safe zone, activity details are added to the log database. Since these two activities are related and contribute to the SoS level goal progress, SIMVA-SoS can determine interdependences, and can assess the impact of either of the constituent system performance in fulfilling their role.</td>
+</tr>
+<tr>
+<td width="183">Interoperability</td>
+<td width="506">SIMVA-SoS assumes heterogeneous constituent systems in terms of capability and role, but having identical model and semantics.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h5><strong>2. Goals &amp; Requirements</strong></h5>
+<p><strong>(1) Goal Priorities</strong></p>
+<ul>
+<li>
+<strong>Priority 1:  </strong>To Save and Preserve Life</li>
+<li>
+<strong>Priority 2: </strong>Mitigate/minimise the impact of the incident</li>
+<li>
+<strong>Priority 3: </strong>Support a return to a new normality</li>
+<li>In order to deliver these, a further common objective is: <strong><em>To support the work of emergency service partners</em></strong>
+</li>
+</ul>
+<p><strong>(2) Roles and Responsibilities of Organizations</strong></p>
+<ul>
+<li>1) Policy Service
+<ul>
+<li>Protect life and property</li>
+<li>Co-ordinate the multi-agency response</li>
+<li>Protect and preserve the scene and investigate the incident</li>
+<li>Prevent crime and disorder</li>
+<li>Collate and disseminate casualty information</li>
+</ul>
+</li>
+<li>2) Fire &amp; Rescue Service
+<ul>
+<li>Save Life</li>
+<li>Protect Property</li>
+<li>Protect the Environment</li>
+<li>Provide assistance in support of local communities</li>
+</ul>
+</li>
+<li>3) Ambulance Service
+<ul>
+<li>Save Life and prevent further suffering</li>
+<li>Facilitate Patient Triage</li>
+<li>Provide casualty treatment and transport to the most appropriate facility</li>
+<li>Co-ordinate all health resources supporting the incident</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h5><strong>3. System Components Design</strong></h5>
+<p>See PDF file for components design of SoS.</p>
+<p>[wpdm_package id=&#8217;562&#8242;]</p>
+<p>&nbsp;</p>
+<h4><strong>[Scenario 2] Smart City Robot Agent SoS Scenario</strong></h4>
+<h5><strong>1. Summary of Scenario</strong></h5>
+<p>(1) Smart factory and its components</p>
+<p><a href="/starlab/wp-content/uploads/2018/11/factory.jpg"><img loading="lazy" class="size-full wp-image-666 alignnone" src="/starlab/wp-content/uploads/2018/11/factory.jpg" alt="" width="900" height="550" srcset="/starlab/wp-content/uploads/2018/11/factory.jpg 900w, /starlab/wp-content/uploads/2018/11/factory-300x183.jpg 300w, /starlab/wp-content/uploads/2018/11/factory-768x469.jpg 768w" sizes="(max-width: 900px) 100vw, 900px"></a></p>
+<p><strong>Smart factory (i.e., Industry 4.0)</strong> is a revolutionary trend of manufacturing industries, which promises to deliver a more responsive, adaptive, and connected manufacturing line. New market requirements and emerging autonomously technologies such as IoT are shifting the manufacturing companies’ environment toward smart factories. Thanks to IoT physical objects are seamlessly integrated into the information network where they can become active participants in business processes, communicate information about their status, surrounding environment, production processes, maintenance schedule and even more. In addition, rising energy prices, increasing ecological awareness, and changing consumer behaviors toward greener products are driving decision makers to put green manufacturing and energy efficient production processes at the top of their priorities. Furthermore, unlike the way in which existing factories provide products to customers, situations are changing in which factories produce and provide customized products to meet the needs of customers of late years. As a representative example, Jun Ji-hyun&#8217;s lipstick, which appeared in the drama &#8220;My Love from the Star,&#8221; has gained huge popularity in Korea, Japan and China. However, the company has never experienced inventory problems because the company analyzed customers&#8217; needs and increased production in advance by conducting a preliminary survey of SNS such as Instagram and Facebook. As such, Smart Factory should enable efficient production of products according to customer needs.</p>
+<p>There are four main components in this smart factory scenario. First is robots which are considered as autonomous constituent systems (CSs) of this scenario. In this scenario, there are two organizations, Manufacturing and Distribution. In manufacturing organization, we assume that there are three constituent systems, component management robots, process robots, packaging robots. In distribution organization, we assume that there are four CSs, stock management robots, cleaning robots, transferring robots (e.g., KIVA system), delivery robots (e.g., Amazon Prime Air). Second one is policies generated by analyzing customer behaviors. In this smart factory scenario, this smart factory can generate its policies by analyzing customers’ behaviors in social networks. The third component is energy suppliers for robots. Each robot automatically charge itself before discharged. The last part is cloud computing platform that enables communication between robots.</p>
+<p>&nbsp;</p>
+<p>(2) Real-world Example: SoS for Autonomous Collaborative Robots</p>
+<p><img loading="lazy" class="size-full wp-image-665 alignnone" src="/starlab/wp-content/uploads/2018/11/robot.jpg" alt="" width="770" height="400" srcset="/starlab/wp-content/uploads/2018/11/robot.jpg 770w, /starlab/wp-content/uploads/2018/11/robot-300x156.jpg 300w, /starlab/wp-content/uploads/2018/11/robot-768x399.jpg 768w" sizes="(max-width: 770px) 100vw, 770px"></p>
+<p>We consider a scenario that autonomous robots collect trash with cooperation. This robot scenario simplifies the main features of the smart factory SoS scenario. First, there are robots that collect trash at the sea as autonomous constituent systems (CSs). Each robots communicate to other robots for sharing the existence of trash and its positions. Second, the policies of the SoS affect the cooperative behavior of this robot system. In the smart factory scenario, the policies of SoS are automatically changed by the analysis of customer behaviors in SNS. However, in this robot scenario we assume that SoS managers set the policies of SoS. Third, this robot scenario also considers the energy issue same as smart factory. There are energy supplies that robots should revisit before they are discharged and SoS managers can set a policy of robot behaviors for minimizing the energy consumption. Lastly, we assume that each robot communicate by using internet connection at the cloud computing platform.</p>
+<p>&nbsp;</p>
+<p>(3)Why is the autonomous collaborative robot scenario an SoS?</p>
+<table>
+<tbody>
+<tr>
+<td width="353">Dimension</td>
+<td width="354">Observations in the scenario</td>
+</tr>
+<tr>
+<td width="353">Autonomy of constituents</td>
+<td width="354">Constituent systems in SIMVA-SoS can have range of actions. These actions need not be known at the SoS level, except the actions that are used to perform a role in SIMVA-SoS. For example, the robots in this scenario could have range of actions including traversing a specific area, collecting garbage, recharging, sending messages to nearby robots, etc. SIMVA-SoS considers only those actions which are used to fulfill the common goal, i.e. the SoS level goal, and only those the constituent systems publically use to perform their role.</td>
+</tr>
+<tr>
+<td width="353">Independence</td>
+<td width="354">Constituent systems in SIMVA-SoS perform their action to fulfill specific role identified/decomposed from the SoS level goal. In doing so, regardless of how they do it, the only requirement is communicating state of their action to related constituent systems. For example, how a robot perform the searching and collecting operation with or without other robots is encapsulated in its action. Independently they perform their action, and only communicate action status to the respective constituent systems.</td>
+</tr>
+<tr>
+<td width="353">Distribution</td>
+<td width="354">Constituent systems in SIMVA-SoS exchange only information using the infrastructure provided by SIMVA-SoS. For example, a robot communicate with other robot by using the Cloud infrastructure. Thus, SIMVA-SoS provide <em>distribution </em>by enabling constituent systems communicate concurrently on logical time. Each constituent systems have a shared logical time tick to perform their atomic action at once.</td>
+</tr>
+<tr>
+<td width="353">Evolution</td>
+<td width="354">The SIMVA-SoS simulation engine always keep track of constituent systems activity logs at each tick, and this enables to create consistent evolution steps and preservation of specified properties. In the collaborative robot scenario, at each tick SoS state update, for example additional trash founded, is communicated to all constituent systems (i.e., robots). The logs and update information helps to maintain and monitor evolution steps preserved.</td>
+</tr>
+<tr>
+<td width="353">Dynamic Behavior</td>
+<td width="354">SoS structure and composition changes dynamically as constituent systems make autonomous decisions. SIMVA-SoS provide a mechanism to manage the changes and direct them to the intended SoS level goal. In the collaborative robot scenario, if a robot is broken, the simulation engine can easily recognize it by counting the missed self-status notification. The simulation engine, thus, free SoS level resources which were assigned to that specific constituent system (this can include restructuring and rescheduling the remaining constituent systems, or admitting if there are constituent systems that can play the role).</td>
+</tr>
+<tr>
+<td width="353">Emergence of Behavior</td>
+<td width="354">SIMVA-SoS identifies emergent behavior based on SoS level goal progresses. In the collaborative robot scenario, certain robots performing <em>searching </em>action, and some other robots performing <em>collecting</em> action contribute to the progress of SoS level goal only when the actions are synergized.  The simulation engine compute and determines the cumulative contribution of each constituent systems actions to the progress of SoS level goal by analyzing log data.</td>
+</tr>
+<tr>
+<td width="353">Interdependence</td>
+<td width="354">By analyzing log data, SIMVA-SoS provide explicit identification of interdependence, the tracing of mutual dependencies, and the ability to use these links to assess the impact of constituent system changes. When some robots search garbage and sends signal to other robots, activity details are added to the log database. Similarly, when robots given messages collect and transfer garbage, activity details are added to the log database. Since these two activities are related and contribute to the SoS level goal progress, SIMVA-SoS can determine interdependences, and can assess the impact of either of the constituent system performance in fulfilling their role.</td>
+</tr>
+<tr>
+<td width="353">Interoperability</td>
+<td width="354">SIMVA-SoS assumes heterogeneous constituent systems in terms of capability and role, but having identical model and semantics.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h5><strong>2. Goals &amp; Requirements</strong></h5>
+<p>(1) SoS level goal</p>
+<ul>
+<li>To efficiently manage and control the manufacturing and distribution system</li>
+</ul>
+<p>(2) Roles and Responsibilities of Organizations</p>
+<ul>
+<li>1) Manufacturing Organization
+<ul>
+<li>Manage manufacturing process</li>
+<li>Control the quality of the products</li>
+<li>Manage the raw materials</li>
+<li>Make schedule of production line process</li>
+<li>Package the products</li>
+</ul>
+</li>
+<li>2) Distribution Organization
+<ul>
+<li>Get order</li>
+<li>Manage the inventory</li>
+<li>Manage the warehouse</li>
+<li>Deliver the products</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h5></h5>
+<h5><strong>3. System Components Design</strong></h5>
+<p>See PDF file for components design of SoS.</p>
+<p>[wpdm_package id=&#8217;562&#8242;]</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+						</div>
+<!--/div .post-excerpt-->
+												
+						
+					</div>
+<!--/div .post-->
+									</div>
+<!--/div #posts-->
+				<aside id="sidebar-right">
+	<div id="archives-7" class="widget widget_archive">
+<div class="title-widget">Recent posts</div>
+			<ul>
+					<li><a href="/starlab/2020/11/">2020년 11월</a></li>
+			</ul>
+
+			</div>
+<div id="calendar-3" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap">
+<table id="wp-calendar" class="wp-calendar-table">
+	<caption>2023 3월</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="월요일">월</th>
+		<th scope="col" title="화요일">화</th>
+		<th scope="col" title="수요일">수</th>
+		<th scope="col" title="목요일">목</th>
+		<th scope="col" title="금요일">금</th>
+		<th scope="col" title="토요일">토</th>
+		<th scope="col" title="일요일">일</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td colspan="2" class="pad">&nbsp;</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+	</tr>
+	<tr>
+		<td>6</td>
+<td>7</td>
+<td id="today">8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+	</tr>
+	<tr>
+		<td>13</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+<td>19</td>
+	</tr>
+	<tr>
+		<td>20</td>
+<td>21</td>
+<td>22</td>
+<td>23</td>
+<td>24</td>
+<td>25</td>
+<td>26</td>
+	</tr>
+	<tr>
+		<td>27</td>
+<td>28</td>
+<td>29</td>
+<td>30</td>
+<td>31</td>
+		<td class="pad" colspan="2">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table>
+<nav aria-label="이전과 다음 달" class="wp-calendar-nav">
+		<span class="wp-calendar-nav-prev"><a href="/starlab/2020/11/">&laquo; 11월</a></span>
+		<span class="pad">&nbsp;</span>
+		<span class="wp-calendar-nav-next">&nbsp;</span>
+	</nav>
+</div></div>
+<div id="nav_menu-4" class="widget widget_nav_menu"><div class="menu-top-menu-container"><ul id="menu-top-menu" class="menu">
+<li id="menu-item-51" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-51"><a target="_blank" rel="noopener" href="/">&#8211; SE Lab Home</a></li>
+<li id="menu-item-477" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-477"><a target="_blank" rel="noopener" href="http://kaist.ac.kr/">&#8211; KAIST Webpage</a></li>
+</ul></div></div>
+		<div id="recent-posts-4" class="widget widget_recent_entries">
+		<div class="title-widget">Recent Posts</div>
+		<ul>
+											<li>
+					<a href="/starlab/2020/11/25/interactive-simulation/">Interactive Simulation</a>
+									</li>
+					</ul>
+
+		</div></aside><!--/aside #sidebar-right-->			</div>
+<!--/div .wrapper-->
+		</section><!--/section #content-->
+						<footer id="footer">
+			<div class="wrapper cf">
+				<div class="footer-margin-left cf">
+					<div id="text-8" class="footer-box widget_text">			<div class="textwidget">ⓒ Software Engineering Lab, KAIST (2016-)</div>
+		</div>				</div>
+<!--/div .footer-margin-left .cf-->
+				<div class="lawyeria_lite_poweredby">
+<a class="" href="https://themeisle.com/themes/lawyeria-lite/" target="_blank" rel="nofollow">Lawyeria Lite </a>powered by<a class="" href="http://wordpress.org/" target="_blank" rel="nofollow"> WordPress</a>
+</div>			</div>
+<!--/div .wrapper .cf-->
+		</footer><!--/footer #footer-->
+		<script type="text/javascript">
+        jQuery(function(){
+        var arrLiveStats=[];
+        var WSM_PREFIX="wsm";
+		
+        jQuery(".if-js-closed").removeClass("if-js-closed").addClass("closed");
+                var wsmFnSiteLiveStats=function(){
+                           jQuery.ajax({
+                               type: "POST",
+                               url: wsm_ajaxObject.ajax_url,
+                               data: { action: 'liveSiteStats', requests: JSON.stringify(arrLiveStats), r: Math.random() }
+                           }).done(function( strResponse ) {
+                                if(strResponse!="No"){
+                                    arrResponse=JSON.parse(strResponse);
+                                    jQuery.each(arrResponse, function(key,value){
+                                    
+                                        $element= document.getElementById(key);
+                                        oldValue=parseInt($element.getAttribute("data-value").replace(/,/g, ""));
+                                        diff=parseInt(value.replace(/,/g, ""))-oldValue;
+                                        $class="";
+                                        
+                                        if(diff>=0){
+                                            diff="+"+diff;
+                                        }else{
+                                            $class="wmcRedBack";
+                                        }
+
+                                        $element.setAttribute("data-value",value);
+                                        $element.innerHTML=diff;
+                                        jQuery("#"+key).addClass($class).show().siblings(".wsmH2Number").text(value);
+                                        
+                                        if(key=="SiteUserOnline")
+                                        {
+                                            var onlineUserCnt = arrResponse.wsmSiteUserOnline;
+                                            if(jQuery("#wsmSiteUserOnline").length)
+                                            {
+                                                jQuery("#wsmSiteUserOnline").attr("data-value",onlineUserCnt);   jQuery("#wsmSiteUserOnline").next(".wsmH2Number").html("<a target=\"_blank\" href=\"?page=wsm_traffic&subPage=UsersOnline&subTab=summary\">"+onlineUserCnt+"<\/a>");
+                                            }
+                                        }
+                                    });
+                                    setTimeout(function() {
+                                        jQuery.each(arrResponse, function(key,value){
+                                            jQuery("#"+key).removeClass("wmcRedBack").hide();
+                                        });
+                                    }, 1500);
+                                }
+                           });
+                       }
+                       if(arrLiveStats.length>0){
+                          setInterval(wsmFnSiteLiveStats, 10000);
+                       }});
+        </script><script type="text/javascript" src="/starlab/wp-content/themes/lawyeria-lite/js/jquery.fancybox.js?ver=1.0" id="lawyeria_lite_fancybox_script-js"></script>
+<script type="text/javascript" src="/starlab/wp-content/themes/lawyeria-lite/js/jquery.masonry.js?ver=1.0" id="lawyeria_lite_masonry-js"></script>
+<script type="text/javascript" src="/starlab/wp-content/themes/lawyeria-lite/js/scripts.js?ver=1.0" id="lawyeria_lite_scripts-js"></script>
+<script type="text/javascript" src="/starlab/wp-includes/js/comment-reply.min.js?ver=5.7.8" id="comment-reply-js"></script>
+<script type="text/javascript" src="/starlab/wp-includes/js/wp-embed.min.js?ver=5.7.8" id="wp-embed-js"></script>
+	</body>
+</html>

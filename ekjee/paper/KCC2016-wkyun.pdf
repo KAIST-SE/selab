@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Redirecting...</title>
+		<meta http-equiv="refresh" content="0;url=https://sites.google.com/se.kaist.ac.kr/ekjee">
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.location = "https://sites.google.com/se.kaist.ac.kr/ekjee";
+		</script>
+
+		<p>You are being redirected to <a href="https://sites.google.com/se.kaist.ac.kr/ekjee">https://sites.google.com/se.kaist.ac.kr/ekjee</a></p>
+	</body>
+</html>

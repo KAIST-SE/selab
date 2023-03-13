@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta http-equiv="https://se.kaist.ac.kr/starlab/wp-content/themes/lawyeria-lite/content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<title>Runtime Monitoring &#038; Verification Technique | SESoS/KAIST</title>
+
+		<!--[if lt IE 9]>
+		<script src="https://se.kaist.ac.kr/starlab/wp-content/themes/lawyeria-lite/js/html5.js"></script>
+		<link rel="stylesheet" href="https://se.kaist.ac.kr/starlab/wp-content/themes/lawyeria-lite/css/ie.css" type="text/css">
+		<![endif]-->	
+
+		<style>#wpadminbar #wp-admin-bar-wsm_free_top_button .ab-icon:before {
+	content: "\f239";
+	color: #FF9800;
+	top: 3px;
+}</style>
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="SESoS/KAIST &raquo; 피드" href="/starlab/feed/">
+<link rel="alternate" type="application/rss+xml" title="SESoS/KAIST &raquo; 댓글 피드" href="/starlab/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"\/starlab\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.7.8"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/starlab/wp-includes/css/dist/block-library/style.min.css?ver=5.7.8" type="text/css" media="all">
+<link rel="stylesheet" id="wsm-style-css" href="/starlab/wp-content/plugins/wp-stats-manager/css/style.css?ver=1.2" type="text/css" media="all">
+<link rel="stylesheet" id="lawyeria_lite_style-css" href="/starlab/wp-content/themes/lawyeria-lite/style.css?ver=1.0" type="text/css" media="all">
+<link rel="stylesheet" id="lawyeria_lite_fancybox-css" href="/starlab/wp-content/themes/lawyeria-lite/css/jquery.fancybox.css?ver=1.0" type="text/css" media="all">
+<link rel="stylesheet" id="lawyeria_lite_font-css" href="//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C400italic%2C700italic%7CRoboto+Slab%3A300%2C100%2C400%2C700&#038;subset=latin%2Clatin-ext" type="text/css" media="all">
+<script type="text/javascript" src="/starlab/wp-includes/js/jquery/jquery.min.js?ver=3.5.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="/starlab/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/starlab/wp-json/">
+<link rel="alternate" type="application/json" href="/starlab/wp-json/wp/v2/pages/930">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/starlab/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/starlab/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.7.8">
+<link rel="canonical" href="/starlab/studies/study-2-statistical-verification-of-sos/runtime-monitoring-verification-technique/">
+<link rel="shortlink" href="/starlab/?p=930">
+<link rel="alternate" type="application/json+oembed" href="/starlab/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fstarlab%2Fstudies%2Fstudy-2-statistical-verification-of-sos%2Fruntime-monitoring-verification-technique%2F">
+<link rel="alternate" type="text/xml+oembed" href="/starlab/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fstarlab%2Fstudies%2Fstudy-2-statistical-verification-of-sos%2Fruntime-monitoring-verification-technique%2F#038;format=xml">
+	   
+    <!-- Wordpress Stats Manager -->
+    <script type="text/javascript">var _wsm = _wsm || [];
+           _wsm.push(['trackPageView']);
+           _wsm.push(['enableLinkTracking']);
+           _wsm.push(['enableHeartBeatTimer']);
+          (function() {
+            var u="/starlab/wp-content/plugins/wp-stats-manager/";
+            _wsm.push(['setUrlReferrer', "/starlab/studies/study-2-statistical-verification-of-sos/runtime-monitoring-verification-technique/?simply_static_page=352"]);
+            _wsm.push(['setTrackerUrl',"/starlab/?wmcAction=wmcTrack"]);
+            _wsm.push(['setSiteId', "1"]);
+            _wsm.push(['setPageId', "930"]);
+            _wsm.push(['setWpUserId', "0"]);           
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/wsm_new.js'; s.parentNode.insertBefore(g,s);
+          })();</script>
+    <!-- End Wordpress Stats Manager Code -->
+      <link rel="icon" href="/starlab/wp-content/uploads/2018/11/sesos-100x100.png" sizes="32x32">
+<link rel="icon" href="/starlab/wp-content/uploads/2018/11/sesos-200x200.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/starlab/wp-content/uploads/2018/11/sesos-200x200.png">
+<meta name="msapplication-TileImage" content="/starlab/wp-content/uploads/2018/11/sesos-300x300.png">
+	</head>
+	<body class="page-template-default page page-id-930 page-child parent-pageid-340">
+		<header>
+			<div class="wide-header">
+				<div class="wrapper cf">
+					<div class="header-left cf">
+						
+                            <a class="logo" href="/starlab" title="SESoS/KAIST"><img src="/starlab/wp-content/uploads/2018/11/title2.png" alt="SESoS/KAIST" title="SESoS/KAIST"></a>					</div>
+<!--/div .header-left .cf-->
+					<div class="header-contact">
+    					    					<br>
+    					<span>
+    						    					</span><!--/span-->
+					</div>
+<!--/.header-contact-->
+				</div>
+<!--/div .wrapper-->
+			</div>
+<!--/div .wide-header-->
+			<div class="wrapper cf">
+			    <nav>
+    				<div class="openresponsivemenu">
+    					Open Menu    				</div>
+<!--/div .openresponsivemenu-->
+    				<div class="container-menu cf">
+        				<div class="menu-menu-container"><ul id="menu-menu" class="menu">
+<li id="menu-item-859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-859"><a href="/starlab/about-us/">About</a></li>
+<li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-813"><a href="/starlab/research-lab/">Research Lab</a></li>
+<li id="menu-item-814" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-814">
+<a href="/starlab/studies/">Studies</a>
+<ul class="sub-menu">
+	<li id="menu-item-832" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-832"><a href="/starlab/">Overview of SESoS Research</a></li>
+	<li id="menu-item-823" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-823">
+<a href="/starlab/studies/study-1-sos-and-environment-modeling/">[Study 1] SoS and Environment Modeling</a>
+	<ul class="sub-menu">
+		<li id="menu-item-826" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-826"><a href="/starlab/studies/study-1-sos-and-environment-modeling/1-meta-model-for-system-of-systems-m2sos/">1) SoS Meta-Models for Simulaton &#038; Verification: M2SoS (v2) and Model Types</a></li>
+		<li id="menu-item-827" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-827"><a href="/starlab/studies/study-1-sos-and-environment-modeling/2-environment-modeling-of-sos/">2) Environment Modeling of SoS</a></li>
+		<li id="menu-item-828" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-828"><a href="/starlab/studies/study-1-sos-and-environment-modeling/3-policy-specification-for-sos/">3) Policy Specification for SoS</a></li>
+		<li id="menu-item-829" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-829"><a href="/starlab/studies/study-1-sos-and-environment-modeling/4-sos-modeling-language/">4) SoS Modeling Language</a></li>
+		<li id="menu-item-900" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-900"><a href="/starlab/5-high-level-architecture/">5) High-level Architecture</a></li>
+	</ul>
+</li>
+	<li id="menu-item-824" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-824">
+<a href="/starlab/studies/study-2-statistical-verification-of-sos/">[Study 2] Statistical Verification of SoS</a>
+	<ul class="sub-menu">
+		<li id="menu-item-833" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-833"><a href="/starlab/studies/study-2-statistical-verification-of-sos/statistical-model-checking/">1) Statistical Model Checking</a></li>
+		<li id="menu-item-834" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-834"><a href="/starlab/studies/study-2-statistical-verification-of-sos/agent-based-simulation/">2) Agent-based Simulation</a></li>
+		<li id="menu-item-835" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-835"><a href="/starlab/studies/study-2-statistical-verification-of-sos/abc-and-abc-modeling/">3) ABC and ABC+ Modeling</a></li>
+		<li id="menu-item-929" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-929"><a href="/starlab/studies/study-2-statistical-verification-of-sos/interactive-simulation/">4) Interactive Simulation</a></li>
+		<li id="menu-item-932" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-930 current_page_item menu-item-932"><a href="/starlab/studies/study-2-statistical-verification-of-sos/runtime-monitoring-verification-technique/" aria-current="page">5) Runtime Monitoring &#038; Verification Technique</a></li>
+	</ul>
+</li>
+	<li id="menu-item-825" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-825">
+<a href="/starlab/studies/study-3-property-based-model-slicing-for-sos-verification/">[Study 3] Property-based Model Slicing for Efficient SoS Verification</a>
+	<ul class="sub-menu">
+		<li id="menu-item-837" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-837"><a href="/starlab/sos-goal-model-slicing/">1) SoS Goal Model Slicing</a></li>
+		<li id="menu-item-836" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-836"><a href="/starlab/sos-simulation-model-slicing/">2) SoS Simulation Model Slicing</a></li>
+		<li id="menu-item-838" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-838"><a href="/starlab/hybird-sos-model-slicing/">3) Hybird SoS Model Slicing</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-815" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-815">
+<a href="/starlab/publications-2/">Documents</a>
+<ul class="sub-menu">
+	<li id="menu-item-820" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-820"><a href="/starlab/publications-2/conference-and-journal-papers/">Publications</a></li>
+	<li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-840"><a href="/starlab/technical-paper/">Technical Paper</a></li>
+	<li id="menu-item-821" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-821"><a href="/starlab/publications-2/scenario-development/">Scenario Development</a></li>
+	<li id="menu-item-819" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-819"><a href="/starlab/publications-2/dictionary/">Dictionary</a></li>
+</ul>
+</li>
+<li id="menu-item-816" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-816">
+<a href="/starlab/tools-and-artifacts/">Tools and Artifacts</a>
+<ul class="sub-menu">
+	<li id="menu-item-891" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-891"><a href="/starlab/simva-sos-modeler/">SIMVA-SoS Modeler</a></li>
+	<li id="menu-item-843" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-843">
+<a href="/starlab/research/dictionary/">Research prototyping</a>
+	<ul class="sub-menu">
+		<li id="menu-item-846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-846"><a href="/starlab/research/dictionary/prism/">Research prototyping with PRISM</a></li>
+		<li id="menu-item-847" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-847"><a href="/starlab/research/dictionary/devs/">Research prototyping with DEVS</a></li>
+		<li id="menu-item-845" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-845"><a href="/starlab/research/dictionary/uppaal/">Research prototyping with UPPAAL</a></li>
+	</ul>
+</li>
+	<li id="menu-item-830" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-830">
+<a href="/starlab/tools-and-artifacts/opensource-tools/">Opensource Tools</a>
+	<ul class="sub-menu">
+		<li id="menu-item-851" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851"><a href="/starlab/tools-and-artifacts/opensource-tools/simva-sos/">SIMVA-SoS</a></li>
+		<li id="menu-item-848" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-848"><a href="/starlab/tools-and-artifacts/opensource-tools/sos-modeling-tool-for-simulation/">SoS Modeling Tool for Simulation</a></li>
+		<li id="menu-item-849" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-849"><a href="/starlab/tools-and-artifacts/opensource-tools/sos-goal-model-slicer/">SoS Goal Model Slicer</a></li>
+		<li id="menu-item-850" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-850"><a href="/starlab/tools-and-artifacts/opensource-tools/sos-simulation-model-slicer/">SoS Simulation Model Slicer</a></li>
+		<li id="menu-item-831" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-831"><a href="/starlab/dynamic-simva-sos/">Dynamic SIMVA-SoS</a></li>
+	</ul>
+</li>
+	<li id="menu-item-844" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-844"><a href="/starlab/tools-and-artifacts/software-artifacts/">Software Artifacts</a></li>
+</ul>
+</li>
+<li id="menu-item-862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-862">
+<a href="/starlab/tutorials/">Tutorials</a>
+<ul class="sub-menu">
+	<li id="menu-item-863" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-863"><a href="/starlab/tutorials/sysml-tutorial/">SysML</a></li>
+	<li id="menu-item-864" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-864"><a href="/starlab/tutorials/uml-marte-tutorial/">UML MARTE</a></li>
+	<li id="menu-item-865" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-865"><a href="/starlab/tutorials/cml-tutorial/">CML</a></li>
+	<li id="menu-item-866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-866"><a href="/starlab/tutorials/devs-and-system-dynamics/">DEVS and System Dynamics</a></li>
+	<li id="menu-item-867" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-867"><a href="/starlab/tutorials/250-2/">ADOxx</a></li>
+</ul>
+</li>
+<li id="menu-item-861" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-861"><a href="/starlab/seminars/">Seminars</a></li>
+</ul></div>    				</div>
+<!--/div .container-menu .cf-->
+    			</nav><!--/nav .navigation-->
+		    </div>
+			<div class="wrapper">
+						</div>	
+  			<section class="wide-nav">
+				<div class="wrapper">
+					<h3>
+						Runtime Monitoring &#038; Verification Technique					</h3>
+<!--/h3-->
+				</div>
+<!--/div .wrapper-->
+			</section><!--/section .wide-nav-->
+		</header><!--/header-->
+		<section id="content">
+			<div class="wrapper cf">
+				<div id="posts">
+										<div class="post">
+						
+						<div class="post-excerpt">
+							<h4>Runtime Monitoring</h4>
+<p>In general, runtime monitoring has 2 main approaches, online and offline monitoring. In online monitoring, a system is monitored during its runtime for execution for any violation(s) of specified properties. A runtime monitor will continuously receive information in terms of system events which are generated by the monitored system. Based on the events received so far, the runtime monitor has to determine if any violations have occurred up till that point in time.</p>
+<p>Due to its capability to monitor a system as it executes, online monitoring also provides the ability to make early detections which are crucial for properties which may require immediate action upon violation. These properties include safety and critical properties. On the other hand, this capability also introduces a runtime overhead on the system. A spectrum of runtime monitoring online approaches will be discussed later in this report.</p>
+<p>In offline monitoring, a monitor takes as input a complete execution trace from a system which has already finished executing and analyses the complete trace for any possible violation of specified properties. This means that no monitoring is performed during a system’s execution phase.</p>
+<p>Offline monitoring, while not as intrusive as online monitoring, suffers from late detection as it is not able to monitor a system’s execution trace during a system’s runtime execution and is only able to perform analysis once the systems finishes its execution and generates a complete execution trace for the monitor. The table below shows a comparison between offline and online monitoring.</p>
+<table>
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td>Offline Monitoring</td>
+<td>Online Monitoring</td>
+</tr>
+<tr>
+<td>Monitoring execution</td>
+<td>After monitored system terminates (trace is forwarded to offline monitor)</td>
+<td>While executing the system</td>
+</tr>
+<tr>
+<td>Relation with system</td>
+<td>Independent from the system</td>
+<td>Execute alongside the system</td>
+</tr>
+<tr>
+<td>Monitoring overhead</td>
+<td>Little runtime overhead</td>
+<td>Inevitable runtime overhead</td>
+</tr>
+<tr>
+<td>Violation detection</td>
+<td>Late detection (detection happens after system stops executing)</td>
+<td>Early detection</td>
+</tr>
+<tr>
+<td>Suitable verification property</td>
+<td>Properties that can be verified by globally analyzing the execution trace</td>
+<td>Security and critical properties</td>
+</tr>
+<tr>
+<td>Suitable to use</td>
+<td>Double checking the behavior of systems</td>
+<td>Power plant controller</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>Online Runtime Monitoring Spectrum</h4>
+<p>Cassar et al. (2017) introduced a spectrum for the different online runtime monitoring approaches (in terms of component-based systems) as seen in the figure above. Briefly, component-based systems are made up of entities such as actors, nodes, threads, and etc that can be in a <i>running</i> or blocked state.</p>
+<p>The spectrum includes <i>Completely Synchronous (CS)</i> monitoring instrumentation, <i>Synchronous Monitoring with Synchronous Instrumentation (SMSI)</i>, A<i>synchronous Monitoring with Checkpoints (AMC)</i>, A<i>synchronous Monitoring with Synchronous Detections (AMSD)</i> and <i>Completely Asynchronous (CA)</i> monitoring approach.</p>
+<p>The spectrum is (as seen in the above figure) is ranked from left to right in order of tightly coupled systems to loosely coupled systems. A tightly coupled system blocks the system every time an event occurs thus allowing for more control over the system at the cost of introducing overhead. On the other end, a loosely coupled system does not perform any system blocking when an event occurs resulting in more efficiency in terms of lesser overhead at the cost of sacrificing the degree of control over the system.</p>
+<p>For <i>SMSI, AMC,</i> and <i>AMSD,</i> these approaches fall in between the extreme ends of the spectrum which shows the compromise between the overhead and degree of control over the system as a whole.</p>
+<ul>
+<li>
+<i>CS </i>monitoring</li>
+</ul>
+<p>On the left end of the spectrum, the <i>CS</i> monitoring instrumentation approach refers to the tight coupling between the runtime monitor and the system. When an event occurs in any one particular component of the system, all system components are blocked and remain blocked until the required monitoring checks are performed after which the system components are then unblocked.</p>
+<p>This approach allows the runtime property to be immediately detected as all system components are blocked when a violation of the said property detected. Conversely, this tightly coupled behavior is a highly intrusive approach due to the required amount of synchronization between the system, system events and the monitor which results in introducing higher performance overhead on the monitored system.</p>
+<ul>
+<li><i>SMSI</i></li>
+</ul>
+<p><i>The SMSI</i> approach also falls close to the left of the spectrum suggesting that it is a tightly coupled approach but with some caveats. Similar to the <i>CS</i> approach, whenever a specified event is executed, blocking occurs. The difference is that instead of blocking the entire system, only the component responsible for the execution of the event is blocked. The components remains blocked until the necessary monitoring steps are completed and are then reset to its running state.</p>
+<p>Other components in the system which are not responsible for causing the (monitored) event to occur are allowed to continue executing. However, as all events generated by the system still has to be inspected by the monitor synchronously, it causes this approach to still be highly intrusive (albeit not as intrusive as the <i>CS </i>approach) which in turn introduces performance overhead.</p>
+<ul>
+<li><i>AMC</i></li>
+</ul>
+<p><i>AMC</i> provides a balanced approach of allowing the user to specify the components and its generated events which require synchronization with the runtime monitor. A specified component which requires synchronization with the monitor has to temporarily block its execution and await for synchronization while non-specified components may continue with its execution uninterrupted.</p>
+<p>This approach allows uses to manually determine the level of control and intrusiveness the monitor has over the system such as specifying checkpoints for critical events, whereby the system has to block its execution and remain blocked until the runtime monitor has completed the necessary checks. This also means that other general non critical events do not cause the system to be blocked.</p>
+<ul>
+<li><i>AMSD</i></li>
+</ul>
+<p>The <i>AMSD</i> approach lies closer to the right side of the spectrum which means that the runtime monitor and the system is much more loosely coupled than the previous approaches. In particular, this approach only performs synchronization between system events which may cause a violation and the runtime monitor.</p>
+<p>For example, if a particular component generates a specified event which may cause a violation, only that component is blocked and other components which do not contribute to the event may continue its execution. Therefore, this approach still allows for runtime detections (for specified system events) while minimizing its intrusiveness to the system.</p>
+<ul>
+<li><i>CA Monitoring</i></li>
+</ul>
+<p>On the far right end of the spectrum, the <i>CA monitoring</i> approach is completely asynchronous and loosely coupled. This means that the runtime monitor does not perform any form of blocking for all events generated by the system and its components. The handling and checking of events are performed independently by the runtime monitor from the system.</p>
+<p>Oftentimes, this approach may be mistaken for a form of offline monitoring due to its loosely coupled and asynchronous characteristics, similar to the offline monitoring approach. The caveat is that offline monitoring requires complete execution traces which are only obtainable once a system finish its execution whereas <i>CA monitoring </i>analyses partial incremental traces during the runtime of a system.</p>
+<p><i>CA monitoring</i>, although extremely non-intrusive, suffers from late detection. Even if violation causing events were to be detected by the monitor, as no form of component blocking is carried out, the violation would not be flagged in time for any sort of mitigating response to be carried out.</p>
+<p>&nbsp;</p>
+<h4>Runtime Monitoring Approaches implemented in tool</h4>
+<p>Based on the above discussed approaches, the below table shows a categorization of existing tools and the approach type it belongs to.</p>
+<table style="height: 357px;" width="566">
+<tbody>
+<tr>
+<td rowspan="2">Tool</td>
+<td colspan="5">Online</td>
+<td rowspan="2">Offline</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>SMSI</td>
+<td>AMC</td>
+<td>AMSD</td>
+<td>CA</td>
+</tr>
+<tr>
+<td>JEAGLE</td>
+<td>&nbsp;</td>
+<td>●</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Java-MOP</td>
+<td>&nbsp;</td>
+<td>●</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>LARVA toolkit</td>
+<td>&nbsp;</td>
+<td>●</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>detectEr toolkit</td>
+<td>&nbsp;</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>JEAGLE is a Java implementation of Eagle, which is a runtime verification tool supporting future and past time logics, interval logics, state machines, extended regular expression and real-time and ata constraints. JEAGLE implements SMSI by converting specified runtime monitoring properties in Java code and uses AOP to inline the necessary monitoring code into the monitored application. Inlining is the method of replacing functions call with the actual body of the function itself.</p>
+<p>Java-MOP is a client-server Java tool for runtime monitoring and verification using the monitoring oriented programming (MOP) concept. MOP is a paradigm which combines specification and implementation to form a system. During runtime, the specification is checked against the execution trace created by the implementation. Interaction between specification and implementation occurs in the form of an example of providing recovery code for execution during violation of a safety specification. <i>(ref: Chen, Feng &amp; Roşu, Grigore. (2003). Towards Monitoring-Oriented Programming. Electronic Notes in Theoretical Computer Science &#8211; ENTCS. 89. 108-127. 10.1016/S1571-0661(04)81045-4. )</i></p>
+<p>Java-MOP supports specification languages such as past and future-time LTL, extended regular expressions and other. It supports offline monitoring, CA approach and SMSI approach by inlining verification checks. Automated code instrumentation is done by Java-MOP to inline the monitoring verification code within the application.</p>
+<p>LARVA-toolkit is a Java runtime verification tool for object oriented systems. Using an automata-based specification language called Dynamic Automata with Timers and Events (DATE), it allows users to specify real-time and discrete-time properties in terms of automata. The DATE specification is converted into an offline monitor or an online monitor; an online monitor using the SMSI approach. Verification checks are inserted into the monitored application and its specified components using AOP instrumentation.</p>
+<p>The detecEr toolkit is a framework for runtime monitoring in Erlang systems. It converts properties specified in Hennessey Milner logic with recursion into monitors. Its capabilities include allowing for CA, SMSI, AMC and AMSD approaches. Code instrumentation is achieved using an AOP framework for Erlang called eAOP. Th eAOP framework reports events to the runtime monitor as asynchronous messages and is able to force some system components to block while waiting for feedback from monitor thus giving it synchronous capability.</p>
+<p>RV-Monitor is a re-implementation of Java-MOP by separating its monitoring from its code instrumentation capabilities and improved its efficiency in terms of monitoring multiple properties at the same time and the merging of index trees used in the original Java-MOP’s indexing algorithm. Other improvements include removing the behavior for multiple weak references to a single object caused by monitoring a single specification by using a global weak reference table (GWRT) that uses only one weak reference for each distinct object.</p>
+<p>ReMINDS is a runtime monitoring framework designed for monitoring System of Systems (SoS) and its constituent systems. It uses an event model for analyzing and managing events that occur at runtime. Generated events are sent to the ReMINDS framework during runtime, which is made possible by probes instrumenting the monitored system. At its core, ReMINDS is made up of four layers responsible for specific parts in the entire monitoring process, and another layer which cross cuts into each layers for managing variability.</p>
+						</div>
+<!--/div .post-excerpt-->
+												
+						
+					</div>
+<!--/div .post-->
+									</div>
+<!--/div #posts-->
+				<aside id="sidebar-right">
+	<div id="archives-7" class="widget widget_archive">
+<div class="title-widget">Recent posts</div>
+			<ul>
+					<li><a href="/starlab/2020/11/">2020년 11월</a></li>
+			</ul>
+
+			</div>
+<div id="calendar-3" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap">
+<table id="wp-calendar" class="wp-calendar-table">
+	<caption>2023 3월</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="월요일">월</th>
+		<th scope="col" title="화요일">화</th>
+		<th scope="col" title="수요일">수</th>
+		<th scope="col" title="목요일">목</th>
+		<th scope="col" title="금요일">금</th>
+		<th scope="col" title="토요일">토</th>
+		<th scope="col" title="일요일">일</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td colspan="2" class="pad">&nbsp;</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+	</tr>
+	<tr>
+		<td>6</td>
+<td>7</td>
+<td id="today">8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+	</tr>
+	<tr>
+		<td>13</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+<td>19</td>
+	</tr>
+	<tr>
+		<td>20</td>
+<td>21</td>
+<td>22</td>
+<td>23</td>
+<td>24</td>
+<td>25</td>
+<td>26</td>
+	</tr>
+	<tr>
+		<td>27</td>
+<td>28</td>
+<td>29</td>
+<td>30</td>
+<td>31</td>
+		<td class="pad" colspan="2">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table>
+<nav aria-label="이전과 다음 달" class="wp-calendar-nav">
+		<span class="wp-calendar-nav-prev"><a href="/starlab/2020/11/">&laquo; 11월</a></span>
+		<span class="pad">&nbsp;</span>
+		<span class="wp-calendar-nav-next">&nbsp;</span>
+	</nav>
+</div></div>
+<div id="nav_menu-4" class="widget widget_nav_menu"><div class="menu-top-menu-container"><ul id="menu-top-menu" class="menu">
+<li id="menu-item-51" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-51"><a target="_blank" rel="noopener" href="/">&#8211; SE Lab Home</a></li>
+<li id="menu-item-477" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-477"><a target="_blank" rel="noopener" href="http://kaist.ac.kr/">&#8211; KAIST Webpage</a></li>
+</ul></div></div>
+		<div id="recent-posts-4" class="widget widget_recent_entries">
+		<div class="title-widget">Recent Posts</div>
+		<ul>
+											<li>
+					<a href="/starlab/2020/11/25/interactive-simulation/">Interactive Simulation</a>
+									</li>
+					</ul>
+
+		</div></aside><!--/aside #sidebar-right-->			</div>
+<!--/div .wrapper-->
+		</section><!--/section #content-->
+						<footer id="footer">
+			<div class="wrapper cf">
+				<div class="footer-margin-left cf">
+					<div id="text-8" class="footer-box widget_text">			<div class="textwidget">ⓒ Software Engineering Lab, KAIST (2016-)</div>
+		</div>				</div>
+<!--/div .footer-margin-left .cf-->
+				<div class="lawyeria_lite_poweredby">
+<a class="" href="https://themeisle.com/themes/lawyeria-lite/" target="_blank" rel="nofollow">Lawyeria Lite </a>powered by<a class="" href="http://wordpress.org/" target="_blank" rel="nofollow"> WordPress</a>
+</div>			</div>
+<!--/div .wrapper .cf-->
+		</footer><!--/footer #footer-->
+		<script type="text/javascript">
+        jQuery(function(){
+        var arrLiveStats=[];
+        var WSM_PREFIX="wsm";
+		
+        jQuery(".if-js-closed").removeClass("if-js-closed").addClass("closed");
+                var wsmFnSiteLiveStats=function(){
+                           jQuery.ajax({
+                               type: "POST",
+                               url: wsm_ajaxObject.ajax_url,
+                               data: { action: 'liveSiteStats', requests: JSON.stringify(arrLiveStats), r: Math.random() }
+                           }).done(function( strResponse ) {
+                                if(strResponse!="No"){
+                                    arrResponse=JSON.parse(strResponse);
+                                    jQuery.each(arrResponse, function(key,value){
+                                    
+                                        $element= document.getElementById(key);
+                                        oldValue=parseInt($element.getAttribute("data-value").replace(/,/g, ""));
+                                        diff=parseInt(value.replace(/,/g, ""))-oldValue;
+                                        $class="";
+                                        
+                                        if(diff>=0){
+                                            diff="+"+diff;
+                                        }else{
+                                            $class="wmcRedBack";
+                                        }
+
+                                        $element.setAttribute("data-value",value);
+                                        $element.innerHTML=diff;
+                                        jQuery("#"+key).addClass($class).show().siblings(".wsmH2Number").text(value);
+                                        
+                                        if(key=="SiteUserOnline")
+                                        {
+                                            var onlineUserCnt = arrResponse.wsmSiteUserOnline;
+                                            if(jQuery("#wsmSiteUserOnline").length)
+                                            {
+                                                jQuery("#wsmSiteUserOnline").attr("data-value",onlineUserCnt);   jQuery("#wsmSiteUserOnline").next(".wsmH2Number").html("<a target=\"_blank\" href=\"?page=wsm_traffic&subPage=UsersOnline&subTab=summary\">"+onlineUserCnt+"<\/a>");
+                                            }
+                                        }
+                                    });
+                                    setTimeout(function() {
+                                        jQuery.each(arrResponse, function(key,value){
+                                            jQuery("#"+key).removeClass("wmcRedBack").hide();
+                                        });
+                                    }, 1500);
+                                }
+                           });
+                       }
+                       if(arrLiveStats.length>0){
+                          setInterval(wsmFnSiteLiveStats, 10000);
+                       }});
+        </script><script type="text/javascript" src="/starlab/wp-content/themes/lawyeria-lite/js/jquery.fancybox.js?ver=1.0" id="lawyeria_lite_fancybox_script-js"></script>
+<script type="text/javascript" src="/starlab/wp-content/themes/lawyeria-lite/js/jquery.masonry.js?ver=1.0" id="lawyeria_lite_masonry-js"></script>
+<script type="text/javascript" src="/starlab/wp-content/themes/lawyeria-lite/js/scripts.js?ver=1.0" id="lawyeria_lite_scripts-js"></script>
+<script type="text/javascript" src="/starlab/wp-includes/js/comment-reply.min.js?ver=5.7.8" id="comment-reply-js"></script>
+<script type="text/javascript" src="/starlab/wp-includes/js/wp-embed.min.js?ver=5.7.8" id="wp-embed-js"></script>
+	</body>
+</html>
