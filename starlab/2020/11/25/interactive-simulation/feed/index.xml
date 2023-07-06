@@ -8,7 +8,7 @@
 <channel>
 	<title>
 	Interactive Simulation에 댓글	</title>
-	<atom:link href="/starlab/2020/11/25/interactive-simulation/feed/" rel="self" type="application/rss+xml" />
+	<atom:link href="/selab/starlab/2020/11/25/interactive-simulation/feed/" rel="self" type="application/rss+xml" />
 	<link>/starlab/2020/11/25/interactive-simulation/</link>
 	<description>SW Starlab Project</description>
 	<lastBuildDate>Wed, 25 Nov 2020 04:12:44 +0000</lastBuildDate>

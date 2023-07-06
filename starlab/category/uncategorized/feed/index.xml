@@ -9,7 +9,7 @@
 
 <channel>
 	<title>Uncategorized &#8211; SESoS/KAIST</title>
-	<atom:link href="/starlab/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
+	<atom:link href="/selab/starlab/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
 	<link>/starlab</link>
 	<description>SW Starlab Project</description>
 	<lastBuildDate>Wed, 25 Nov 2020 04:12:44 +0000</lastBuildDate>
